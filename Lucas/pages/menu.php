@@ -1,12 +1,11 @@
 <?php
+session_start();
+$customerId = $_SESSION['klant_id'];
 
 require_once  '../class/classMenu.php';
 
 $ShoppingCart = new ShoppingCart();
-/*
- * Tijdelijk hardcoded account ID.
- */
-$customerId = 2;
+
 
 if (isset($_POST['add'])) {
 
@@ -76,8 +75,6 @@ $items = $ShoppingCart->readItems();
             </div>
         <?php endforeach; ?>
     </div>
-
-
 </body>
 
 </html>

@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <!-- Logged in -->
                 <div id="logged-in-form" style="display:none;">
                     <p id="welcome-msg"></p>
+                    <a href="/De-Romeinse-Kade/Lucas/pages/history.php" class="rk-submit-btn" style="display:block; text-align:center; text-decoration:none; box-sizing:border-box;">Mijn bestellingen</a>
                     <button class="rk-submit-btn" id="logout-btn">Uitloggen</button>
                 </div>
 

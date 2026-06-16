@@ -1,6 +1,5 @@
 /* Popup hidden by default */
-#order-popup,
-#login-popup {
+#order-popup {
     display: none;
     position: fixed;
     inset: 0;
@@ -8,8 +7,7 @@
 }
 
 /* Show popup */
-#order-popup.rk-popup-active,
-#login-popup.rk-popup-active {
+#order-popup.rk-popup-active {
     display: block;
 }
 

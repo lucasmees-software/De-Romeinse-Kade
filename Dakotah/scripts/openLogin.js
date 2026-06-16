@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <!-- Logged in -->
                 <div id="logged-in-form" style="display:none;">
                     <p id="welcome-msg"></p>
+                    <a href="/De-Romeinse-Kade/dakotah/pages/history.php" class="rk-submit-btn" style="display:block; text-align:center; text-decoration:none; box-sizing:border-box;">Mijn bestellingen</a>
                     <button class="rk-submit-btn" id="logout-btn">Uitloggen</button>
                 </div>
 
@@ -66,34 +67,21 @@ document.addEventListener('DOMContentLoaded', function () {
         checkSession();
     });
 
-    // Close function
-    function closePopup() {
-        popup.classList.remove('rk-popup-active');
-        document.body.style.overflow = '';
-    }
+    // Close via X
+    document.getElementById('rk-login-close').addEventListener('click', closePopup);
 
-    // Close popup function - simplified
-    function closePopup() {
-        popup.classList.remove('rk-popup-active');
-        document.body.style.overflow = '';
-    }
+    // Close via overlay
+    document.getElementById('rk-login-overlay').addEventListener('click', closePopup);
 
-    // Close via X button (click anywhere on close button)
-    popup.querySelector('#rk-login-close').addEventListener('click', closePopup);
-
-    // Close via overlay click
-    popup.querySelector('#rk-login-overlay').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closePopup();
-        }
-    });
-
-    // Close via Escape key
+    // Close via Escape
     document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && popup.classList.contains('rk-popup-active')) {
-            closePopup();
-        }
+        if (e.key === 'Escape') closePopup();
     });
+
+    function closePopup() {
+        popup.classList.remove('rk-popup-active');
+        document.body.style.overflow = '';
+    }
 
     // Switch to register form
     document.getElementById('go-register').addEventListener('click', function (e) {
@@ -125,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(res => {
             if (res.success) {
                 showLoggedIn(res.naam);
-                closePopup();
             } else {
                 document.getElementById('login-error').textContent = res.error;
             }
@@ -147,7 +134,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(res => {
             if (res.success) {
                 showLoggedIn(res.naam);
-                closePopup();
             } else {
                 document.getElementById('reg-error').textContent = res.error;
             }
@@ -167,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('logged-in-form').style.display = 'none';
                 document.getElementById('login-form').style.display = 'block';
                 document.getElementById('login-title').textContent = 'Inloggen';
-                closePopup();
             }
         });
     });

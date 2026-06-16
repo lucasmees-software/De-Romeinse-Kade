@@ -86,6 +86,19 @@ class ShoppingCart
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Get order history for a customer by name
+    public function getOrderHistory(string $klantNaam): array
+    {
+        $stmt = $this->db->prepare("
+            SELECT klant, datum, totaal_prijs, aantal_klanten, betaald_bool
+            FROM bestellingen_header
+            WHERE klant = :klant
+            ORDER BY datum DESC
+        ");
+        $stmt->execute([':klant' => $klantNaam]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Update a menu item
     public function updateItem(int $id, string $item, float $prijs, string $omschrijving): bool
     {
