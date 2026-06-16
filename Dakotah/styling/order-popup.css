@@ -1,0 +1,142 @@
+/* Popup hidden by default */
+#order-popup,
+#login-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+}
+
+/* Show popup */
+#order-popup.rk-popup-active,
+#login-popup.rk-popup-active {
+    display: block;
+}
+
+/* Dark overlay */
+.rk-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Popup panel */
+.rk-popup-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 8px;
+    width: 360px;
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 1001;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+/* Header */
+.rk-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: #c9a84c;
+}
+
+/* Close button */
+.rk-popup-close {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #888;
+    line-height: 1;
+    padding: 0 0.25rem;
+}
+
+.rk-popup-close:hover {
+    color: #333;
+}
+
+/* Body */
+.rk-popup-body {
+    padding: 1.25rem;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* Footer with back to menu button */
+.rk-popup-footer {
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid #e5e5e5;
+}
+
+.rk-popup-menu-btn {
+    color: #c9a84c;
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+}
+
+.rk-popup-menu-btn:hover {
+    text-decoration: underline;
+}
+
+/* Order item row */
+.rk-order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Item name and price */
+.rk-order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.rk-order-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.rk-order-price {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* Quantity controls */
+.rk-order-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rk-qty {
+    min-width: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.rk-qty-btn {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #555;
+}
+
+.rk-qty-btn:hover {
+    background: #f5f5f5;
+}

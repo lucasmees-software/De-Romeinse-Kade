@@ -1,44 +1,83 @@
 <?php
-require_once __DIR__ . '/../class/classMenu.php';
 
-$menu = new Menu();
-$items = $menu->readItems();
+require_once  '../class/classMenu.php';
 
-$dbClass = new Database();
-$db = $dbClass->connection();
+$ShoppingCart = new ShoppingCart();
+/*
+ * Tijdelijk hardcoded account ID.
+ */
+$customerId = 2;
+
+if (isset($_POST['add'])) {
+
+    $ShoppingCart->addToOrder(
+        $customerId,
+        (int)$_POST['item_id']
+    );
+
+    header("Location: menu.php");
+    exit;
+}
+
+if (isset($_POST['delete'])) {
+    $ShoppingCart->deleteItem(
+        (int)$_POST['item_id']
+    );
+
+    header("Location: menu.php");
+    exit;
+}
+
+$items = $ShoppingCart->readItems();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="../../Dakotah/styling/styling.css">
     <title>Menu</title>
+
+    <link rel="stylesheet" href="../../dakotah/styling/styling.css">
+    <link rel="stylesheet" href="../../dakotah/styling/order-popup.css">
+
+
 </head>
 
 <body>
-
-    <?php include('../../Dakotah/prefabs/navbar.php') ?>
+    <?php include('../../dakotah/prefabs/navbar.php'); ?>
 
     <div class="menu-container">
+
         <?php foreach ($items as $item): ?>
             <div class="menu-item">
                 <h3><?= htmlspecialchars($item['item']) ?></h3>
                 <p><?= htmlspecialchars($item['omschrijving']) ?></p>
                 <p>€<?= htmlspecialchars($item['prijs']) ?></p>
-
-                <form action="menu.php" method="post">
-                    <button class="add">Voeg toe</button>
-                    <button class="update">Verander eten</button>
-                    <button class="delete">Verwijder</button>
-
+                <form method="post">
+                    <input
+                        type="hidden"
+                        name="item_id"
+                        value="<?= $item['ID'] ?>">
+                    <button
+                        type="submit"
+                        name="add"
+                        class="add">
+                        Voeg toe
+                    </button>
+                    <button
+                        type="submit"
+                        name="delete"
+                        class="delete">
+                        Verwijder
+                    </button>
                 </form>
             </div>
         <?php endforeach; ?>
     </div>
+
+
 </body>
 
 </html>

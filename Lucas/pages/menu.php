@@ -1,18 +1,16 @@
 <?php
 
-require_once __DIR__ . '/../classes/classMenu.php';
+require_once  '../class/classMenu.php';
 
-$menu = new Menu();
-
+$ShoppingCart = new ShoppingCart();
 /*
  * Tijdelijk hardcoded account ID.
- * In jouw database bestaat account ID 2.
  */
 $customerId = 2;
 
 if (isset($_POST['add'])) {
 
-    $menu->addToOrder(
+    $ShoppingCart->addToOrder(
         $customerId,
         (int)$_POST['item_id']
     );
@@ -22,8 +20,7 @@ if (isset($_POST['add'])) {
 }
 
 if (isset($_POST['delete'])) {
-
-    $menu->deleteItem(
+    $ShoppingCart->deleteItem(
         (int)$_POST['item_id']
     );
 
@@ -31,8 +28,7 @@ if (isset($_POST['delete'])) {
     exit;
 }
 
-$items = $menu->readItems();
-
+$items = $ShoppingCart->readItems();
 ?>
 
 <!DOCTYPE html>
@@ -44,52 +40,44 @@ $items = $menu->readItems();
     <title>Menu</title>
 
     <link rel="stylesheet" href="../../Lucas/styling/styling.css">
+    <link rel="stylesheet" href="../styling/order-popup.css">
+
+
 </head>
 
 <body>
+    <?php include('../../Lucas/prefabs/navbar.php'); ?>
 
-<?php include('../../Lucas/prefabs/navbar.php'); ?>
+    <div class="menu-container">
 
-<div class="menu-container">
+        <?php foreach ($items as $item): ?>
+            <div class="menu-item">
+                <h3><?= htmlspecialchars($item['item']) ?></h3>
+                <p><?= htmlspecialchars($item['omschrijving']) ?></p>
+                <p>€<?= htmlspecialchars($item['prijs']) ?></p>
+                <form method="post">
+                    <input
+                        type="hidden"
+                        name="item_id"
+                        value="<?= $item['ID'] ?>">
+                    <button
+                        type="submit"
+                        name="add"
+                        class="add">
+                        Voeg toe
+                    </button>
+                    <button
+                        type="submit"
+                        name="delete"
+                        class="delete">
+                        Verwijder
+                    </button>
+                </form>
+            </div>
+        <?php endforeach; ?>
+    </div>
 
-    <?php foreach ($items as $item): ?>
-
-        <div class="menu-item">
-
-            <h3><?= htmlspecialchars($item['item']) ?></h3>
-
-            <p><?= htmlspecialchars($item['omschrijving']) ?></p>
-
-            <p>€<?= htmlspecialchars($item['prijs']) ?></p>
-
-            <form method="post">
-
-                <input
-                    type="hidden"
-                    name="item_id"
-                    value="<?= $item['ID'] ?>">
-
-                <button
-                    type="submit"
-                    name="add"
-                    class="add">
-                    Voeg toe
-                </button>
-
-                <button
-                    type="submit"
-                    name="delete"
-                    class="delete">
-                    Verwijder
-                </button>
-
-            </form>
-
-        </div>
-
-    <?php endforeach; ?>
-
-</div>
 
 </body>
+
 </html>
