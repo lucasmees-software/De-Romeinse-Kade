@@ -3,8 +3,7 @@
 session_start();
 require_once '../class/classMenu.php';
 
-// Hardcoded for testing, replace with $_SESSION['klant_id'] when login is done
-$customerId = 2;
+$customerId = $_SESSION['klant_id'] ?? 0;
 
 // Get order items
 $cart = new ShoppingCart();

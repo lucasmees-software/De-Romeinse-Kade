@@ -1,8 +1,10 @@
 <?php
+
 session_start();
+require_once  '../class/classMenu.php';
+
 $customerId = $_SESSION['klant_id'];
 
-require_once  '../class/classMenu.php';
 
 $ShoppingCart = new ShoppingCart();
 
@@ -10,7 +12,7 @@ $ShoppingCart = new ShoppingCart();
 if (isset($_POST['add'])) {
 
     $ShoppingCart->addToOrder(
-        $customerId,
+        $customerId,    
         (int)$_POST['item_id']
     );
 

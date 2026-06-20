@@ -109,9 +109,42 @@ class ShoppingCart
         ");
         return $stmt->execute([
             ':id' => $id,
-            ':item' => $item,
+            ':item' => $item,   
             ':prijs' => $prijs,
             ':omschrijving' => $omschrijving
         ]);
     }
+    // Place order: calculate total, insert header, clear cart
+public function placeOrder(int $customerId, string $klantNaam, int $aantalKlanten): bool
+{
+    // Get current order items with total
+    $items = $this->getOrderItems($customerId);
+
+    if (empty($items)) {
+        return false;
+    }
+
+    // Calculate total price
+    $totaalPrijs = 0;
+    foreach ($items as $item) {
+        $totaalPrijs += $item['prijs'] * $item['aantal'];
+    }
+
+    // Insert order header
+    $stmt = $this->db->prepare("
+        INSERT INTO bestellingen_header (klant, datum, totaal_prijs, aantal_klanten, betaald_bool)
+        VALUES (:klant, NOW(), :totaal_prijs, :aantal_klanten, 0)
+    ");
+    $stmt->execute([
+        ':klant' => $klantNaam,
+        ':totaal_prijs' => $totaalPrijs,
+        ':aantal_klanten' => $aantalKlanten
+    ]);
+
+    // Clear the cart
+    $stmt = $this->db->prepare("DELETE FROM bestellingen WHERE bestelling_ID = :customer_id");
+    $stmt->execute([':customer_id' => $customerId]);
+
+    return true;
+}
 }
