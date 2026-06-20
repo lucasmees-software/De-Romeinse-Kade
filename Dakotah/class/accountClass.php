@@ -1,6 +1,6 @@
 <?php
 require_once ('../../../De-Romeinse-Kade/main/db/db.php');
-class Account
+class AccountManagement
 {
     public function register($username, $email, $password)
     {
@@ -16,27 +16,11 @@ class Account
 
     public function login($email, $password)
     {
+        
     }
-
+    
     public function logout()
     {
-    }
-}
-
-class read
-{
-    public function allAccounts()
-    {
-        $dbClass = new Database();
-        $db = $dbClass->connection();
-        $stmt = $db->prepare("SELECT * FROM accounts");
-        $stmt->execute();
-        while ($row = $stmt->fetch()) {
-            echo "ID: " . $row['ID'] . "<br>";
-            echo "Naam: " . $row['naam'] . "<br>";
-            echo "Email: " . $row['email'] . "<br>";
-            echo "Wachtwoord: " . $row['wachtwoord'] . "<br>";
-        }
     }
 }
 ?>

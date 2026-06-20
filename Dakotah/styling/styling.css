@@ -146,6 +146,20 @@ body {
   transition: color 0.2s;
 }
 
+.rk-open-menu{
+    display: none;
+  background: none;
+  border: 1px solid #e8d5a3;
+  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #c8860a;
+  font-size: 20px;
+}
+
 .rk-mobile-menu a:last-child {
   border-bottom: none;
 }
@@ -223,6 +237,9 @@ table tr {
   }
   .rk-nav {
     padding: 0 1.25rem;
+  }
+  .rk-open-order{
+    width:;
   }
 }
 
@@ -302,7 +319,6 @@ table tr {
 
 
 /* menu */
-
 .menu-container{
   display:flex;
 }
@@ -324,3 +340,18 @@ table tr {
   padding-left: 22px;
   color: rgba(0, 0, 0, 0.674);
 }
+
+.rk-open-order{
+  display:flex;
+  background:none;
+  background-color: rgba(255, 217, 0, 0.141);
+  border: 0.5px rgba(255, 166, 0, 0.638) solid;
+  border-radius: 5px;
+  width: 38px;
+  height: 38px;
+  animation: background-color cubic-bezier(0.075, 0.82, 0.165, 1)
+}
+
+.rk-open-order:hover{
+  background-color: rgba(0, 0, 0, 0.211);
+}   

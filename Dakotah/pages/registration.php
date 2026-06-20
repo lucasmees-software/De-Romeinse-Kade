@@ -1,5 +1,5 @@
 <?php
-    require_once '../class/accountClass.php';
+require_once '../class/classMenu.php';
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
             <label for="password">wachtwoord:</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit"name="register">Register</button>
+            <button type="submit" name="register">Register</button>
         </form>
     </main>
 </body>
@@ -39,17 +39,17 @@
 </html>
 
 <?php
-   if (isset($_POST['username'])) {
-       $username = $_POST['username'];
-       echo "Username: " . $username . "<br>";
-   }
-   if (isset($_POST['register'])) {
-       $username = $_POST['username'];
-       echo "registered: " . $username . "<br>";
-       $account = new Account();
-       $account->register($_POST['username'], $_POST['email'], $_POST['password']);
-   }
+if (isset($_POST['username'])) {
+    $username = $_POST['username'];
+    echo "Username: " . $username . "<br>";
+}
+if (isset($_POST['register'])) {
+    $username = $_POST['username'];
+    echo "registered: " . $username . "<br>";
+    $account = new account();
+    $account->register($_POST['username'], $_POST['email'], $_POST['password']);
+}
 
-        $read = new read();
-        $read->allAccounts();
+
+
 ?>
