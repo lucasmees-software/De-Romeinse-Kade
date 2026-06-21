@@ -138,3 +138,28 @@
 .rk-qty-btn:hover {
     background: #f5f5f5;
 }
+
+/* Order placing section */
+.rk-popup-order-section {
+    padding: 0 1.25rem 1rem;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 1rem;
+}
+
+.rk-popup-order-section .rk-field {
+    margin-bottom: 0.75rem;
+}
+
+.rk-popup-order-section input[type="number"] {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.rk-popup-order-section input[type="number"]:focus {
+    border-color: #c9a84c;
+}
